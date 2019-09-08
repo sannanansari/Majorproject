@@ -17,6 +17,7 @@ while success:
   if count%10==0:
       image1 = cv2.transpose(image,image)
       image1 = cv2.flip(image1,0 )
+      cv2.imshow('frame',image1)
       imS = cv2.resize(image1, (800, 700))
       roi=imS[50:200, 600:600]
       r = cv2.rectangle(imS,(50,200),(700,700),(0,255,0),0) 
