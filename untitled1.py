@@ -23,14 +23,23 @@ while(cap.isOpened()):
   if ret == True:
  
     # Display the resulting frame
-    cv2.rectangle(frame, (80, 90), (305, 400), (255,0,0), 2)
+    cv2.rectangle(frame, (80, 85), (305, 400), (255,0,0), 2)
     cv2.imshow('Frame',frame)
-    roi = frame[80:325,90:325]
-    mask = cv2.cvtColor(roi,cv2.COLOR_BGR2HSV)
+    imS=cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     l = pp.array([0, 50, 80], dtype = "uint8")
     u = pp.array([23, 255, 255], dtype = "uint8")
-    skinDetect = cv2.inRange(mask, l, u)
-    cv2.imshow('selectedarea',skinDetect)
+    skinDetect = cv2.inRange(imS, l, u)
+    cv2.imshow('ski',skinDetect)
+    img_blur = cv2.bilateralFilter(frame, d = 7,sigmaSpace = 75, sigmaColor =75)
+    # Convert to grayscale 
+    img_gray = cv2.cvtColor(img_blur, cv2.COLOR_RGB2GRAY)
+    # Apply the thresholding
+    a = img_gray.max()  
+    _, thresh = cv2.threshold(img_gray, a/2+60, a,cv2.THRESH_BINARY_INV)
+    image, contours = cv2.findContours(image = thresh, mode = cv2.RETR_TREE, method = cv2.CHAIN_APPROX_SIMPLE)
+    
+    #cv2.imshow('fame2',thresh)
+ 
     # Press Q on keyboard to  exit
     if cv2.waitKey(1) & 0xFF == ord('q'):
       break
