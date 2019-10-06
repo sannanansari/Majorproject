@@ -10,7 +10,7 @@ import numpy as pp
  
 # Create a VideoCapture object and read from input file
 # If the input is the camera, pass 0 instead of the video file name
-cap = cv2.VideoCapture('http://192.168.1.109:8080/videofeed')
+cap = cv2.VideoCapture('http://192.168.1.102:8080/videofeed')
  
 # Check if camera opened successfully
 if (cap.isOpened()== False): 
@@ -33,10 +33,11 @@ while(cap.isOpened()):
     img_blur = cv2.bilateralFilter(frame, d = 7,sigmaSpace = 75, sigmaColor =75)
     # Convert to grayscale 
     img_gray = cv2.cvtColor(img_blur, cv2.COLOR_RGB2GRAY)
+    cv2.imshow('gray-image',img_gray)
     # Apply the thresholding
-    a = img_gray.max()  
-    _, thresh = cv2.threshold(img_gray, a/2+60, a,cv2.THRESH_BINARY_INV)
-    image, contours = cv2.findContours(image = thresh, mode = cv2.RETR_TREE, method = cv2.CHAIN_APPROX_SIMPLE)
+    #a = img_gray.max()  
+    #_, thresh = cv2.threshold(img_gray, a/2+60, a,cv2.THRESH_BINARY_INV)
+    #image, contours = cv2.findContours(image = thresh, mode = cv2.RETR_TREE, method = cv2.CHAIN_APPROX_SIMPLE)
     
     #cv2.imshow('fame2',thresh)
  
