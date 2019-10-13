@@ -8,7 +8,9 @@ Created on Sun Oct  6 21:54:57 2019
 import cv2
 import pyautogui
 import numpy as np
-cap = cv2.VideoCapture('http://192.168.1.102:8080/videofeed')
+import random 
+
+cap = cv2.VideoCapture('http://192.168.1.103:8080/videofeed')
 if (cap.isOpened()== False): 
   print("Error opening video stream or file")
  
@@ -20,10 +22,10 @@ while(cap.isOpened()):
       grayframe = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
       #cv2.imshow('Gray-image',grayframe)
       hsvframe = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
-      #cv2.imshow('HSV-image',hsvframe)
+      cv2.imshow('HSV-image',hsvframe)
       lower_color = np.array([108, 23, 82])
       upper_color = np.array([179, 255, 255])      
-      rangeframe = cv2.inRange(frame,lower,upper)
+      rangeframe = cv2.inRange(frame,lower_color,upper_color)
       blur = cv2.medianBlur(rangeframe, 5)
       kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (8, 8))
       hsv_d = cv2.dilate(blur, kernel)
@@ -33,9 +35,9 @@ while(cap.isOpened()):
       print(x)
       if k > 5:
           if k > x[0][0]:
-              pyautogui.moveTo(100+k, 200+k)
-          elif k > x[0][1]:
-              pyautogui.moveTo(300+k, 500+kq)
+              a = random.randrange(120, 250)
+              b = random.randrange(300, 450)
+              pyautogui.moveTo(a,b)
       k+=1
   if cv2.waitKey(1) & 0xFF == ord('q'):
       break
