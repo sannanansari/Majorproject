@@ -61,6 +61,8 @@ while(cap.isOpened()):
           pyautogui.moveTo(200,200)
       else:
           pyautogui.moveTo(500,500)
+      a = x
+      b = y
           '''
   if cv2.waitKey(1) & 0xFF == ord('q'):
       break
