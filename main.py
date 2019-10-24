@@ -1,16 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Oct 14 18:15:33 2019
-
-@author: Sk Mobin
-"""
-
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Oct 14 17:35:47 2019
-
-@author: Sk Mobin
-"""
 
 
 import cv2
