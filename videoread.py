@@ -33,5 +33,5 @@ while success:
       cv2.imshow('frame',frame)
       #break
       if cv2.waitKey(1) & 0xFF == ord('q'):
-          qbreak
+          break
 cv2.destroyAllWindows()
